@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
+import { withBasePath } from "@/lib/basePath";
 
 export default function TopNav() {
   const pathname = usePathname();
@@ -21,7 +21,12 @@ export default function TopNav() {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
         <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group min-w-0">
           <span className="relative h-9 w-9 shrink-0 group-hover:scale-105 transition-transform">
-            <Image src="/logo-icon.png" alt="Holerite Extra" fill sizes="36px" className="object-contain" priority />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={withBasePath("/logo-icon.png")}
+              alt="Holerite Extra"
+              className="absolute inset-0 h-full w-full object-contain"
+            />
           </span>
           <span className="hidden sm:inline font-display font-bold text-lg tracking-tight truncate">
             Holerite Extra

@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
 import { mensagemErroAuth } from "@/lib/authErrors";
+import { withBasePath } from "@/lib/basePath";
 
 export default function LoginPage() {
   const { user, carregando, entrar, cadastrar } = useAuth();
@@ -50,7 +50,8 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-brand-gradient px-4 py-10">
       <div className="w-full max-w-sm">
         <div className="flex justify-center mb-6 drop-shadow-[0_2px_10px_rgba(17,22,58,0.35)]">
-          <Image src="/logo-full.png" alt="Holerite Extra" width={900} height={575} priority className="w-56 h-auto" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={withBasePath("/logo-full.png")} alt="Holerite Extra" className="w-56 h-auto" />
         </div>
 
         <div className="card w-full p-6 shadow-xl shadow-black/10">

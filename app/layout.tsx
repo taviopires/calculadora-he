@@ -1,18 +1,12 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { AuthProvider } from "@/contexts/AuthContext";
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { REPO_NAME } = require("../site.config.js");
-
-// O favicon (diferente das imagens usadas via next/image) não recebe o
-// prefixo do basePath automaticamente, então montamos o caminho à mão,
-// usando o mesmo REPO_NAME do next.config.js.
-const faviconPath = REPO_NAME ? `/${REPO_NAME}/logo-icon.png` : "/logo-icon.png";
+import { withBasePath } from "@/lib/basePath";
 
 export const metadata: Metadata = {
   title: "Holerite Extra — Calculadora de Horas Extras",
   description: "Registre seu ponto, calcule horas extras e confira Espelho x Holerite.",
-  icons: { icon: faviconPath },
+  icons: { icon: withBasePath("/logo-icon.png") },
 };
 
 // As fontes são carregadas via <link> (em vez de next/font/google) para que o
