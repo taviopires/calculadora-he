@@ -34,6 +34,17 @@ export default function ComparisonTable({
     setDraft((prev) => prev.map((r) => (r.categoria === categoria ? { ...r, [field]: value } : r)));
   }
 
+  // "horasFeitas" e "valorHora" não mudam quando a pessoa edita os campos
+  // abaixo — só dependem dos lançamentos de ponto e do salário. Por isso,
+  // dá pra recalcular "HE devidas", "Diferença" e "Valor da diferença" na
+  // hora, a cada tecla digitada, sem esperar o servidor recalcular depois
+  // de salvar (que é o que causava a tela mostrar um valor desatualizado).
+  function recalcular(row: ComparisonComputed): ComparisonComputed {
+    const horasDevidas = row.difMesAnterior + row.horasFeitas;
+    const dif = row.holeriteHoras - horasDevidas;
+    return { ...row, horasDevidas, dif, valorDif: dif * row.valorHora };
+  }
+
   async function salvar() {
     setSalvando(true);
     setErro(null);
@@ -53,7 +64,7 @@ export default function ComparisonTable({
     <div className="flex flex-col gap-3">
       {/* Celular: um cartão por categoria, campos empilhados */}
       <div className="sm:hidden flex flex-col gap-3">
-        {draft.map((row) => {
+        {draft.map(recalcular).map((row) => {
           const label = CATEGORIAS.find((c) => c.key === row.categoria)?.label ?? row.categoria;
           const difCor = row.dif >= 0 ? "text-ledger-green" : "text-ledger-red";
           return (
@@ -135,7 +146,7 @@ export default function ComparisonTable({
             </tr>
           </thead>
           <tbody>
-            {draft.map((row) => {
+            {draft.map(recalcular).map((row) => {
               const label = CATEGORIAS.find((c) => c.key === row.categoria)?.label ?? row.categoria;
               const difCor = row.dif >= 0 ? "text-ledger-green" : "text-ledger-red";
               return (
