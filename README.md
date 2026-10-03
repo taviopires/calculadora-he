@@ -1,4 +1,4 @@
-# Cartão de Ponto — Calculadora de Horas Extras
+# Holerite Extra — Calculadora de Horas Extras
 
 App web para registrar entrada/saída de ponto e calcular automaticamente as
 horas extras nas 4 categorias usadas na planilha original — **50%**, **70%**

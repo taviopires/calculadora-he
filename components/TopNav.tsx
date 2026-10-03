@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
@@ -19,11 +20,11 @@ export default function TopNav() {
     <header className="border-b border-line bg-paper/95 backdrop-blur sticky top-0 z-20">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
         <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group min-w-0">
-          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-gradient text-white font-display font-bold text-xs rotate-[-6deg] group-hover:rotate-0 transition-transform">
-            H.E.
+          <span className="relative h-9 w-9 shrink-0 group-hover:scale-105 transition-transform">
+            <Image src="/logo-icon.png" alt="Holerite Extra" fill sizes="36px" className="object-contain" priority />
           </span>
           <span className="hidden sm:inline font-display font-bold text-lg tracking-tight truncate">
-            Cartão de Ponto
+            Holerite Extra
           </span>
         </Link>
         {user && (

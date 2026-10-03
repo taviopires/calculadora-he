@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
 import { mensagemErroAuth } from "@/lib/authErrors";
@@ -48,11 +49,8 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-brand-gradient px-4 py-10">
       <div className="w-full max-w-sm">
-        <div className="flex items-center gap-3 mb-6 px-1 drop-shadow-[0_1px_6px_rgba(17,22,58,0.45)]">
-          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-ink/30 border border-white/50 text-white font-display font-bold text-xs backdrop-blur-sm">
-            H.E.
-          </span>
-          <span className="font-display font-bold text-lg tracking-tight text-white">Cartão de Ponto</span>
+        <div className="flex justify-center mb-6 drop-shadow-[0_2px_10px_rgba(17,22,58,0.35)]">
+          <Image src="/logo-full.png" alt="Holerite Extra" width={900} height={575} priority className="w-56 h-auto" />
         </div>
 
         <div className="card w-full p-6 shadow-xl shadow-black/10">
