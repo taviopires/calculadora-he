@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "IBM Plex Sans", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+}
+
+@layer base {
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+  }
+  input,
+  select {
+    font-family: var(--font-mono);
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-white border border-line rounded-lg shadow-sm;
+  }
+  .label {
+    @apply text-xs uppercase tracking-wide text-ink-faint font-semibold;
+  }
+  .input {
+    @apply w-full min-h-[2.625rem] rounded-md border border-line bg-paper/40 px-3 py-2 text-sm text-ink
+      focus:outline-none focus:ring-2 focus:ring-steel focus:border-steel transition;
+  }
+  .btn-primary {
+    @apply inline-flex min-h-[2.625rem] items-center justify-center gap-2 rounded-md bg-steel text-white px-4 py-2
+      text-sm font-semibold hover:bg-steel-dark transition disabled:opacity-40 disabled:pointer-events-none;
+  }
+  .btn-secondary {
+    @apply inline-flex min-h-[2.625rem] items-center justify-center gap-2 rounded-md border border-line bg-white text-ink px-4 py-2
+      text-sm font-semibold hover:border-steel hover:text-steel transition;
+  }
+  .btn-danger {
+    @apply inline-flex min-h-[2.25rem] items-center justify-center gap-2 rounded-md border border-ledger-red/30 text-ledger-red px-3 py-1.5
+      text-xs font-semibold hover:bg-ledger-redBg transition;
+  }
+}
+
+::selection {
+  background: #cdeaff;
+}
